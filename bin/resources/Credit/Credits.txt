@@ -1,0 +1,30 @@
+DEVELOPER
+---------
+Programmed by SHIVAM ROHILLA
+
+
+GAME DESIGN
+-----------
+Design by SHIVAM ROHILLA
+
+
+ASSETS
+------
+CC0 art from OpenGameArt.org
+	license: 
+https://creativecommons.org/
+	publicdomain/zero/1.0/
+
+Art, Sounds & Textures
+
+https://opengameart.org/
+https://sounds-resource.com/
+https://spriters-resource.com/
+https://textures-resource.com/
+
+Fonts
+
+https://www.fontsquirrel.com/
+	fonts/Silkscreen
+	fonts/Headhunter
+	fonts/Firecat
