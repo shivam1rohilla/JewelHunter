@@ -154,6 +154,23 @@ public class Story {
 			
 		}
 	}
+	
+	public void storyHintStage4(Graphics g){
+		g.setColor(Color.BLACK);
+		g.fillRoundRect(10, 10, 620, 460, 10, 10);
+		Text.drawString(g, "HINT", 320, 75,true,Color.LIGHT_GRAY,Assets.firecat72);
+		Text.drawString(g, "Stage 4", 320, 150,true,Color.WHITE,Assets.font28bold);
+		Text.drawString(g, "You are on last Stage!", 320, 210,true,Color.WHITE,Assets.font28);
+		Text.drawString(g, "Fight with all the enemies", 320, 260,true,Color.WHITE,Assets.font28);
+		Text.drawString(g, "Then you can find a door!", 320, 310,true,Color.WHITE,Assets.font28);
+		Text.drawString(g, "Don't forget to use speedSlower!", 320, 360,true,Color.WHITE,Assets.font28);
+		Text.drawString(g, "Press Enter to close Hint.", 320, 410,true,Color.CYAN,Assets.font28);
+		storyticks++;
+		a=true;	
+		ac=true;
+		blinkDim(20, 370, 100, 100);
+	}
+	
 	private void blinkDim(int x,int y, int width, int height){
 		blinkX=x;
 		blinkY=y;

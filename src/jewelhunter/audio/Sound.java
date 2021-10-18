@@ -20,19 +20,21 @@ public class Sound {
 			InputStream in = Sound.class.getResourceAsStream(url);
 			InputStream bin = new BufferedInputStream(in);
 			AudioInputStream ais = AudioSystem.getAudioInputStream(bin);
-			AudioFormat baseFormat = ais.getFormat();
-			AudioFormat decodeFormat = new AudioFormat(
-				AudioFormat.Encoding.PCM_SIGNED,
-				baseFormat.getSampleRate(),
-				16,
-				baseFormat.getChannels(),
-				baseFormat.getChannels() * 2,
-				baseFormat.getSampleRate(),
-				false
-			);
-			AudioInputStream dais = AudioSystem.getAudioInputStream(decodeFormat, ais);
-			clip = AudioSystem.getClip();
-			clip.open(dais);
+//			AudioFormat baseFormat = ais.getFormat();
+//			AudioFormat decodeFormat = new AudioFormat(
+//				AudioFormat.Encoding.PCM_SIGNED,
+//				baseFormat.getSampleRate(),
+//				16,
+//				baseFormat.getChannels(),
+//				baseFormat.getChannels() * 2,
+//				baseFormat.getSampleRate(),
+//				false
+//			);
+			//AudioInputStream dais = AudioSystem.getAudioInputStream(decodeFormat, ais);
+			//clip = AudioSystem.getClip();
+			DataLine.Info info = new DataLine.Info(Clip.class, ais.getFormat());
+            clip = (Clip) AudioSystem.getLine(info);
+			clip.open(ais);
 			clips.put(id, clip);
 		} catch (UnsupportedAudioFileException e) {
 			e.printStackTrace();
@@ -66,8 +68,10 @@ public class Sound {
 	public static void setVolume(String id, float f) {
 		Clip c = clips.get(id);
 		if(c == null) return;
-		FloatControl vol = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
-		vol.setValue(f);
+		if( c.isControlSupported( FloatControl.Type.MASTER_GAIN)) {
+			FloatControl vol = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
+			vol.setValue(f);
+		}
 	}
 	public static void stop(String s) {
 		Clip clip = clips.get(s);

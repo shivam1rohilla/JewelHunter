@@ -29,7 +29,7 @@ public class Player extends Creature {
 	
 	private int playerHealth;
 	private long ticks,flinchTicks;
-	private boolean compass,storyC,storyPick,storyCrate,storyCrateCantMove,storySpeedSlower,storySword,sword;
+	private boolean compass,storyC,storyPick,storyCrate,storyCrateCantMove,storySpeedSlower,storySword,sword, storyHintStage4;
 	private boolean runningStory,died=false,speedSlower,stopGameCam;
 	boolean a=false,flinch=false,ac=false;
 	private int speedSlowerCount=0;
@@ -203,7 +203,7 @@ public class Player extends Creature {
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_C)){
 			for(Entity e : handler.getWorld().getEntityManager().getEntities()){
 				if(e instanceof Crate){
-					System.out.println((handler.getGameCamera().getxOffset())+"::"+(handler.getGameCamera().getyOffset()));
+					//System.out.println((handler.getGameCamera().getxOffset())+"::"+(handler.getGameCamera().getyOffset()));
 					if(e.getX()<=handler.getGameCamera().getxOffset()+handler.getWidth()*Tile.TILEWIDTH&&e.getX()>=handler.getGameCamera().getxOffset()
 							&&(e.getY()<=handler.getWorld().getHeight()*Tile.TILEHEIGHT+handler.getGameCamera().getyOffset())&&e.getY()>=handler.getGameCamera().getyOffset()&&
 							(e.getX()!=e.actualXCrate||e.getY()!=e.actualYCrate)){
@@ -354,6 +354,8 @@ public class Player extends Creature {
 			story.storyCrateCantMove(g);
 		else if(storySpeedSlower)
 			story.storySpeedSlower(g);
+		else if(storyHintStage4)
+			story.storyHintStage4(g);
 		else
 			story.storyBlink(g);
 	}
@@ -491,14 +493,14 @@ public class Player extends Creature {
 		this.storyCrateCantMove = storyCrateCantMove;
 	}
 	private void storyStatus(){
-		if(storyC||storyCrate||storyPick||storyCrateCantMove||storySpeedSlower||storySword)
+		if(storyC||storyCrate||storyPick||storyCrateCantMove||storySpeedSlower||storySword||storyHintStage4)
 			runningStory=true;
 		else{
 			runningStory=false;
 		}		
 	}
 	private void stopStory(){
-		storyC=storyCrate=storyPick=storyCrateCantMove=storySpeedSlower=storySword=false;
+		storyC=storyCrate=storyPick=storyCrateCantMove=storySpeedSlower=storySword=storyHintStage4=false;
 	}
 	
 	
@@ -521,7 +523,10 @@ public class Player extends Creature {
 	public void setStorySpeedSlower(boolean storySpeedSlower) {
 		this.storySpeedSlower = storySpeedSlower;
 	}
-
+	
+	public void setStoryHintStage4(boolean storyHintStage4) {
+		this.storyHintStage4 = storyHintStage4;
+	}
 	public boolean isDied() {
 		return died;
 	}

@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Iterator;
 
-import com.sun.glass.events.KeyEvent;
+import java.awt.event.KeyEvent;
 
 import jewelhunter.Handler;
 import jewelhunter.audio.Sound;
@@ -32,7 +32,6 @@ public class GameStateStage4 extends State {
 	
 	public GameStateStage4(Handler handler,GameStateManager gsm) {
 		super(handler,gsm);
-		
 		world =new World(handler,"worlds/Stage4.map");
 		world.init();
 		if(handler.getWorld()!=null)
@@ -40,6 +39,7 @@ public class GameStateStage4 extends State {
 		else
 			pH=3;
 		handler.setWorld(world);
+		handler.getWorld().getEntityManager().getPlayer().setStoryHintStage4(true);
 		if(inv!=null){
 		Iterator<Item> it = inv.getInventoryItems().iterator();
 		while(it.hasNext()){

@@ -3,7 +3,7 @@ package jewelhunter.states;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import com.sun.glass.events.KeyEvent;
+import java.awt.event.KeyEvent;
 
 import jewelhunter.Handler;
 import jewelhunter.audio.Sound;
